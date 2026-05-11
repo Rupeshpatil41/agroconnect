@@ -1,0 +1,16 @@
+Crop,Month,PreviousPrice,Rainfall,Price
+Wheat,1,2200,40,2300
+Wheat,2,2300,45,2400
+Wheat,3,2400,50,2500
+Rice,1,1800,60,1900
+Rice,2,1900,65,2000
+Rice,3,2000,70,2100
+Cotton,1,5000,30,5200
+Cotton,2,5200,35,5400
+Cotton,3,5400,40,5600
+Sugarcane,1,2800,75,2900
+Sugarcane,2,2900,80,3000
+Tomato,1,1200,50,1500
+Tomato,2,1500,55,1800
+Onion,1,1400,45,1700
+Onion,2,1700,50,2000
