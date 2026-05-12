@@ -1,0 +1,380 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f9fafb;
+}
+
+.container {
+  padding: 20px 60px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 75px;
+  height: 75px;
+}
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+}
+
+.login-btn {
+  background: #16a34a;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.hero-left {
+  flex: 1;
+}
+
+.hero-left h1 {
+  font-size: 42px;
+}
+
+.hero-left span {
+  color: #16a34a;
+}
+
+.hero-left p {
+  color: #555;
+  margin: 20px 0;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.primary {
+  background: #16a34a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+}
+
+.secondary {
+  border: 1px solid #16a34a;
+  color: #16a34a;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: transparent;
+}
+
+/* Features */
+.features {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Image */
+.hero-right img {
+  width: 450px;
+  border-radius: 12px;
+}
+
+/* Login Page */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f7f6;
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-card h2 {
+  margin-bottom: 10px;
+}
+
+.login-card p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.primary.full {
+  width: 100%;
+}
+
+.switch {
+  margin-top: 15px;
+  font-size: 14px;
+}
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #16a34a;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.logout {
+  margin-top: 30px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 30px;
+  background: #f9fafb;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Section */
+.section {
+  margin-top: 30px;
+}
+/* Register link hover effect */
+.switch span {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.switch span:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+/* ========================= */
+/* 🔥 ANIMATIONS (SAFE ADD) */
+/* ========================= */
+
+/* Smooth transitions globally */
+button,
+.card,
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+/* Button hover effect */
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* Button click (press effect) */
+button:active {
+  transform: scale(0.96);
+}
+
+/* Card hover (landing page cards) */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Dashboard cards hover */
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* Smooth page fade-in */
+body {
+  animation: fadeIn 0.4s ease-in;
+}
+
+/* Keyframe */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar links hover */
+.nav-links a {
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #16a34a;
+  transform: scale(1.05);
+}
+
+/* Logo subtle animation */
+.logo-img {
+  transition: 0.3s;
+}
+
+.logo-img:hover {
+  transform: rotate(5deg) scale(1.05);
+}
+/* ADD INTO styles.css */
+
+/* ================================= */
+/* MODERN STARTUP UI */
+/* ================================= */
+
+.main {
+  animation: fadeIn 0.5s ease;
+}
+
+.stat-card {
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+button {
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s ease;
+  box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22,163,74,0.15);
+}
+
+img {
+  transition: 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+.sidebar ul li {
+  padding: 12px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.sidebar ul li:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
