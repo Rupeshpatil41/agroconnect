@@ -131,7 +131,7 @@ router.put(
       // IMAGE
       if (req.file) {
         updateData.image =
-          `http://localhost:5000/uploads/${req.file.filename}`;
+          `https://agroconnect-1-hyi3.onrender.com/uploads/${req.file.filename}`;
       }
 
       const updatedUser =

@@ -31,7 +31,7 @@ function Notifications() {
 
         const res =
           await axios.get(
-            `http://localhost:5000/api/notifications/${userId}`
+            `https://agroconnect-1-hyi3.onrender.com/api/notifications/${userId}`
           );
 
         setNotifications(
@@ -62,7 +62,7 @@ function Notifications() {
       try {
 
         await axios.put(
-          `http://localhost:5000/api/mark-notification/${id}`
+          `https://agroconnect-1-hyi3.onrender.com/api/mark-notification/${id}`
         );
 
         // REMOVE INSTANTLY FROM UI

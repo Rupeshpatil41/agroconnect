@@ -46,7 +46,7 @@ function FarmerDashboard() {
 
         const res =
           await axios.get(
-            `http://localhost:5000/api/profile/${userId}`
+            `https://agroconnect-1-hyi3.onrender.com/api/profile/${userId}`
           );
 
         setUser(

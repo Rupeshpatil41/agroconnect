@@ -39,7 +39,7 @@ function FarmerOrders() {
 
         const res =
           await axios.get(
-            `http://localhost:5000/api/farmer-orders/${farmerId}`
+            `https://agroconnect-1-hyi3.onrender.com/api/farmer-orders/${farmerId}`
           );
 
         setOrders(
@@ -64,7 +64,7 @@ function FarmerOrders() {
       try {
 
         await axios.put(
-          `http://localhost:5000/api/update-order/${id}`,
+          `https://agroconnect-1-hyi3.onrender.com/api/update-order/${id}`,
 
           { status }
         );

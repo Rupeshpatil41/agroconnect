@@ -1,7 +1,7 @@
 // client/src/pages/Profile.jsx
 
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import "../pages/styles.css";
 
 function Profile() {
@@ -30,7 +30,7 @@ function Profile() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/profile/${userId}`
+        `http://https://agroconnect-1-hyi3.onrender.com/api/profile/${userId}`
       );
 
       const data = res.data;
@@ -87,7 +87,7 @@ function Profile() {
       });
 
       await axios.put(
-        `http://localhost:5000/api/profile/${userId}`,
+        `https://agroconnect-1-hyi3.onrender.com/api/profile/${userId}`,
         formData
       );
 

@@ -23,7 +23,7 @@ export const useNotifications =
     );
 
 const socket = io(
-  "http://localhost:5000"
+  "https://agroconnect-1-hyi3.onrender.com"
 );
 
 export const NotificationProvider =
@@ -57,7 +57,7 @@ export const NotificationProvider =
         try {
           const res =
             await axios.get(
-              `http://localhost:5000/api/notifications/${user._id}`
+              `http://https://agroconnect-1-hyi3.onrender.com/api/notifications/${user._id}`
             );
 
           setNotifications(

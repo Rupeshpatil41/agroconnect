@@ -6,8 +6,8 @@ import {
 } from "react";
 
 import {
-  useParams,
   useNavigate,
+  useParams,
 } from "react-router-dom";
 
 import axios from "axios";
@@ -58,7 +58,7 @@ function ProductDetail() {
 
         const res =
           await axios.get(
-            "http://localhost:5000/api/products"
+            "https://agroconnect-1-hyi3.onrender.com/api/products"
           );
 
         setAllProducts(
@@ -124,7 +124,7 @@ function ProductDetail() {
         }
 
         await axios.post(
-          "http://localhost:5000/api/place-order",
+          "https://agroconnect-1-hyi3.onrender.com/api/place-order",
 
           {
             productId:
@@ -239,7 +239,7 @@ function ProductDetail() {
           {selectedImage && (
 
             <img
-              src={`http://localhost:5000/uploads/${selectedImage}`}
+              src={`https://agroconnect-1-hyi3.onrender.com/uploads/${selectedImage}`}
 
               alt="product"
 
@@ -284,7 +284,7 @@ function ProductDetail() {
                 <img
                   key={i}
 
-                  src={`http://localhost:5000/uploads/${img}`}
+                  src={`https://agroconnect-1-hyi3.onrender.com/uploads/${img}`}
 
                   alt="thumb"
 
@@ -515,7 +515,7 @@ function ProductDetail() {
               {p.images?.[0] && (
 
                 <img
-                  src={`http://localhost:5000/uploads/${p.images[0]}`}
+                  src={`https://agroconnect-1-hyi3.onrender.com/uploads/${p.images[0]}`}
 
                   alt="product"
 

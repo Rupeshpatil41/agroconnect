@@ -46,7 +46,7 @@ function CompanyOrders() {
 
         const res =
           await axios.get(
-            `http://localhost:5000/api/company-orders/${companyId}`
+            `https://agroconnect-1-hyi3.onrender.com/api/company-orders/${companyId}`
           );
 
         setOrders(
