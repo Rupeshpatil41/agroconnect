@@ -218,6 +218,9 @@ app.use(
 // =====================================
 // SERVER
 // =====================================
+app.get("/", (req, res) => {
+  res.send("AgroConnect Backend Running ✅");
+});
 server.listen(
   5000,
 
