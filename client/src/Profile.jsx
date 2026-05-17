@@ -30,7 +30,7 @@ function Profile() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        `http://https://agroconnect-1-hyi3.onrender.com/api/profile/${userId}`
+        `http://https://agroconnect-app-ksc5.onrender.com/api/profile/${userId}`
       );
 
       const data = res.data;
@@ -87,7 +87,7 @@ function Profile() {
       });
 
       await axios.put(
-        `https://agroconnect-1-hyi3.onrender.com/api/profile/${userId}`,
+        `https://agroconnect-app-ksc5.onrender.com/api/profile/${userId}`,
         formData
       );
 

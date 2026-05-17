@@ -157,7 +157,7 @@ function Profile() {
 
         const res =
           await axios.put(
-            `https://agroconnect-1-hyi3.onrender.com/api/profile/${storedUser._id}`,
+            `https://agroconnect-app-ksc5.onrender.com/api/profile/${storedUser._id}`,
 
             {
               name,

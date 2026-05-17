@@ -43,7 +43,7 @@ function PublicProfile() {
   const fetchProfile = async () => {
     try {
       const res = await axios.get(
-        `https://agroconnect-1-hyi3.onrender.com/api/profile/${id}`
+        `https://agroconnect-app-ksc5.onrender.com/api/profile/${id}`
       );
 
       setUser(res.data);
@@ -59,7 +59,7 @@ function PublicProfile() {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        "https://agroconnect-1-hyi3.onrender.com/api/products"
+        "https://agroconnect-app-ksc5.onrender.com/api/products"
       );
 
       const filtered =
@@ -80,7 +80,7 @@ function PublicProfile() {
   const fetchReviews = async () => {
     try {
       const res = await axios.get(
-        `https://agroconnect-1-hyi3.onrender.com/api/reviews/${id}`
+        `https://agroconnect-app-ksc5.onrender.com/api/reviews/${id}`
       );
 
       setReviews(res.data);

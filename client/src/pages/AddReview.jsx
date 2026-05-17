@@ -68,7 +68,7 @@ function AddReview() {
 
         const res =
           await axios.get(
-            "https://agroconnect-1-hyi3.onrender.com/api/products"
+            "https://agroconnect-app-ksc5.onrender.com/api/products"
           );
 
         const found =
@@ -97,7 +97,7 @@ function AddReview() {
 
         const res =
           await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/api/reviews/${id}`
+            `https://agroconnect-app-ksc5.onrender.com/api/reviews/${id}`
           );
 
         setReviews(
@@ -133,7 +133,7 @@ function AddReview() {
         }
 
         await axios.post(
-          "https://agroconnect-1-hyi3.onrender.com/api/add-review",
+          "https://agroconnect-app-ksc5.onrender.com/api/add-review",
 
           {
             productId: id,

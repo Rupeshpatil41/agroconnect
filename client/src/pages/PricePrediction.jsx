@@ -160,7 +160,7 @@ setTemperature(
 
         const res =
           await axios.post(
-            "https://agroconnect-ml-w96a.onrender.com/predict",
+            "https://agroconnect-app-ksc5.onrender.com/predict",
 
            {
   crop,

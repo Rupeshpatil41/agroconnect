@@ -15,7 +15,7 @@ import Sidebar from "../components/Sidebar";
 import "../pages/styles.css";
 
 const socket =
-  io("https://agroconnect-1-hyi3.onrender.com");
+  io("https://agroconnect-app-ksc5.onrender.com");
 
 function Chat() {
 
@@ -80,7 +80,7 @@ function Chat() {
 
         const res =
           await axios.get(
-            "https://agroconnect-1-hyi3.onrender.com/api/all-users"
+            "https://agroconnect-app-ksc5.onrender.com/api/all-users"
           );
 
         let filtered =
@@ -250,7 +250,7 @@ function Chat() {
 
         const res =
           await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/api/messages/${senderId}/${user._id}`
+            `https://agroconnect-app-ksc5.onrender.com/api/messages/${senderId}/${user._id}`
           );
 
         setMessages(
@@ -290,7 +290,7 @@ function Chat() {
 
         // SAVE TO DATABASE
         await axios.post(
-          "https://agroconnect-1-hyi3.onrender.com/api/messages",
+          "https://agroconnect-app-ksc5.onrender.com/api/messages",
 
           data
         );

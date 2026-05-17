@@ -67,7 +67,7 @@ function BrowseProducts() {
 
         const res =
           await axios.get(
-            "https://agroconnect-1-hyi3.onrender.com/api/products"
+            "https://agroconnect-app-ksc5.onrender.com/api/products"
           );
 
         setProducts(
@@ -95,7 +95,7 @@ function BrowseProducts() {
 
         const res =
           await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/api/company-orders/${companyId}`
+            `https://agroconnect-app-ksc5.onrender.com/api/company-orders/${companyId}`
           );
 
         const orderedIds =
@@ -187,7 +187,7 @@ function BrowseProducts() {
         }
 
         await axios.post(
-          "https://agroconnect-1-hyi3.onrender.com/api/place-order",
+          "https://agroconnect-app-ksc5.onrender.com/api/place-order",
 
           {
             productId:
@@ -495,7 +495,7 @@ function BrowseProducts() {
                   <img
                     src={
                       p.images?.length > 0
-                        ? `https://agroconnect-1-hyi3.onrender.com/uploads/${p.images[0]}`
+                        ? `https://agroconnect-app-ksc5.onrender.com/uploads/${p.images[0]}`
                         : "https://via.placeholder.com/400x250"
                     }
 

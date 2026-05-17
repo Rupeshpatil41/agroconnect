@@ -39,7 +39,7 @@ function FarmerOrders() {
 
         const res =
           await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/api/farmer-orders/${farmerId}`
+            `https://agroconnect-app-ksc5.onrender.com/api/farmer-orders/${farmerId}`
           );
 
         setOrders(
@@ -64,7 +64,7 @@ function FarmerOrders() {
       try {
 
         await axios.put(
-          `https://agroconnect-1-hyi3.onrender.com/api/update-order/${id}`,
+          `https://agroconnect-app-ksc5.onrender.com/api/update-order/${id}`,
 
           { status }
         );

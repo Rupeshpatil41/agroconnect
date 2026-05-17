@@ -36,7 +36,7 @@ const sendMessage =
     try {
 
       await axios.post(
-        "https://agroconnect-1-hyi3.onrender.com/api/contact",
+        "https://agroconnect-app-ksc5.onrender.com/api/contact",
 
         contact
       );

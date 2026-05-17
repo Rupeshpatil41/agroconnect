@@ -46,7 +46,7 @@ function CompanyOrders() {
 
         const res =
           await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/api/company-orders/${companyId}`
+            `https://agroconnect-app-ksc5.onrender.com/api/company-orders/${companyId}`
           );
 
         setOrders(
