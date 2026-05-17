@@ -80,7 +80,7 @@ function Chat() {
 
         const res =
           await axios.get(
-            "https://agroconnect-app-ksc5.onrender.com/api/all-users"
+            "https://agroconnect-1-hyi3.onrender.com/all-users"
           );
 
         let filtered =
@@ -250,7 +250,7 @@ function Chat() {
 
         const res =
           await axios.get(
-            `https://agroconnect-app-ksc5.onrender.com/api/messages/${senderId}/${user._id}`
+            `https://agroconnect-1-hyi3.onrender.com/messages/${senderId}/${user._id}`
           );
 
         setMessages(
@@ -290,7 +290,7 @@ function Chat() {
 
         // SAVE TO DATABASE
         await axios.post(
-          "https://agroconnect-app-ksc5.onrender.com/api/messages",
+          "https://agroconnect-1-hyi3.onrender.com/messages",
 
           data
         );

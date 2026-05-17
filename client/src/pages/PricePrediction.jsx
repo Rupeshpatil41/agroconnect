@@ -399,14 +399,6 @@ setPercentageChange(
     Rice
   </option>
 
-  <option value="Cotton">
-    Cotton
-  </option>
-
-  <option value="Sugarcane">
-    Sugarcane
-  </option>
-
   <option value="Tomato">
     Tomato
   </option>
@@ -515,18 +507,9 @@ setPercentageChange(
   }}
 >
 
-  <option value="0">
-    Season 0
-  </option>
-
-  <option value="1">
-    Season 1
-  </option>
-
-  <option value="2">
-    Season 2
-  </option>
-
+  <option value="0">Kharif</option>
+<option value="1">Rabi</option>
+<option value="2">Zaid</option>
 </select>
 
          {/* MONTH */}

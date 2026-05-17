@@ -49,7 +49,7 @@ function CompanyDashboard() {
 
         const res =
           await axios.get(
-            `https://agroconnect-app-ksc5.onrender.com/api/profile/${userId}`
+            `https://agroconnect-1-hyi3.onrender.com/api/profile/${userId}`
           );
 
         setUser(

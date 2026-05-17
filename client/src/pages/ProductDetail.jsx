@@ -58,7 +58,7 @@ function ProductDetail() {
 
         const res =
           await axios.get(
-            "https://agroconnect-app-ksc5.onrender.com/api/products"
+            "https://agroconnect-1-hyi3.onrender.com/api/products"
           );
 
         setAllProducts(
@@ -124,7 +124,7 @@ function ProductDetail() {
         }
 
         await axios.post(
-          "https://agroconnect-app-ksc5.onrender.com/api/place-order",
+          "https://agroconnect-1-hyi3.onrender.com/api/place-order",
 
           {
             productId:
@@ -239,7 +239,7 @@ function ProductDetail() {
           {selectedImage && (
 
             <img
-              src={`https://agroconnect-app-ksc5.onrender.com/uploads/${selectedImage}`}
+              src={`https://agroconnect-1-hyi3.onrender.com/uploads/${selectedImage}`}
 
               alt="product"
 
@@ -284,7 +284,7 @@ function ProductDetail() {
                 <img
                   key={i}
 
-                  src={`https://agroconnect-app-ksc5.onrender.com/uploads/${img}`}
+                  src={`https://agroconnect-1-hyi3.onrender.com/uploads/${img}`}
 
                   alt="thumb"
 
@@ -515,7 +515,7 @@ function ProductDetail() {
               {p.images?.[0] && (
 
                 <img
-                  src={`https://agroconnect-app-ksc5.onrender.com/uploads/${p.images[0]}`}
+                  src={`https://agroconnect-1-hyi3.onrender.com/uploads/${p.images[0]}`}
 
                   alt="product"
 
