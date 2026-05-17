@@ -15,7 +15,7 @@ import Sidebar from "../components/Sidebar";
 import "../pages/styles.css";
 
 const socket =
-  io("https://agroconnect-app-ksc5.onrender.com");
+  io("https://agroconnect-1-hyi3.onrender.com");
 
 function Chat() {
 
