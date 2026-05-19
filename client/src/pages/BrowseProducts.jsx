@@ -65,10 +65,9 @@ function BrowseProducts() {
 
       try {
 
-        const res =
-          await axios.get(
-            "https://agroconnect-1-hyi3.onrender.com/products"
-          );
+       const res = await axios.get(
+  `https://agroconnect-1-hyi3.onrender.com/api/company-orders/${companyId}`
+);
           console.log(res.data);
 
         setProducts(
