@@ -377,12 +377,17 @@ function Chat() {
                 {/* USER IMAGE */}
                 <img
                   src={
-                    u.image
-                      ? `https://agroconnect-1-hyi3.onrender.com/${u.image}`
+                    u.profilePic
+                      ? `https://agroconnect-1-hyi3.onrender.com/${u.profilePic}`
                       : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
                   alt="profile"
+
+                  onError={(e) => {
+                    e.target.src =
+                      "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+                  }}
 
                   style={{
                     width:
@@ -460,12 +465,17 @@ function Chat() {
                 {/* SELECTED USER IMAGE */}
                 <img
                   src={
-                    selectedUser.image
-                      ? `https://agroconnect-1-hyi3.onrender.com/${selectedUser.image}`
+                    selectedUser.profilePic
+                      ? `https://agroconnect-1-hyi3.onrender.com/${selectedUser.profilePic}`
                       : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
                   alt="profile"
+
+                  onError={(e) => {
+                    e.target.src =
+                      "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+                  }}
 
                   style={{
                     width:
