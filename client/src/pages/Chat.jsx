@@ -238,7 +238,7 @@ function Chat() {
           message,
         };
 
-        // SAVE TO DATABASE
+        // SAVE MESSAGE
         await axios.post(
           "https://agroconnect-1-hyi3.onrender.com/api/messages",
 
@@ -374,11 +374,11 @@ function Chat() {
                 }}
               >
 
-                {/* PROFILE IMAGE */}
+                {/* USER IMAGE */}
                 <img
                   src={
                     u.image
-                      ? `https://agroconnect-1-hyi3.onrender.com/uploads/${u.image}`
+                      ? `https://agroconnect-1-hyi3.onrender.com/${u.image}`
                       : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
@@ -417,7 +417,7 @@ function Chat() {
 
         </div>
 
-        {/* CHAT */}
+        {/* CHAT AREA */}
         <div
           style={{
             flex: 1,
@@ -461,7 +461,7 @@ function Chat() {
                 <img
                   src={
                     selectedUser.image
-                      ? `https://agroconnect-1-hyi3.onrender.com/uploads/${selectedUser.image}`
+                      ? `https://agroconnect-1-hyi3.onrender.com/${selectedUser.image}`
                       : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
