@@ -1,5 +1,3 @@
-// client/src/pages/Chat.jsx
-
 import {
   useEffect,
   useRef,
@@ -15,7 +13,9 @@ import Sidebar from "../components/Sidebar";
 import "../pages/styles.css";
 
 const socket =
-  io("https://agroconnect-1-hyi3.onrender.com");
+  io(
+    "https://agroconnect-1-hyi3.onrender.com"
+  );
 
 function Chat() {
 
@@ -80,8 +80,13 @@ function Chat() {
 
         const res =
           await axios.get(
-            "https://agroconnect-1-hyi3.onrender.com/all-users"
+            "https://agroconnect-1-hyi3.onrender.com/api/all-users"
           );
+
+        console.log(
+          "USERS:",
+          res.data
+        );
 
         let filtered =
           res.data.filter(
@@ -115,38 +120,16 @@ function Chat() {
             );
         }
 
-        // RECENT FIRST
-        const sortedUsers =
-          filtered.sort(
-            (a, b) => {
-
-              const aTime =
-                a.updatedAt
-                  ? new Date(
-                      a.updatedAt
-                    ).getTime()
-                  : 0;
-
-              const bTime =
-                b.updatedAt
-                  ? new Date(
-                      b.updatedAt
-                    ).getTime()
-                  : 0;
-
-              return (
-                bTime - aTime
-              );
-            }
-          );
-
         setUsers(
-          sortedUsers
+          filtered
         );
 
       } catch (err) {
 
-        console.log(err);
+        console.log(
+          "USER FETCH ERROR:",
+          err
+        );
       }
     };
 
@@ -160,7 +143,6 @@ function Chat() {
 
       (data) => {
 
-        // REALTIME CHAT UPDATE
         if (
           selectedUser &&
           (
@@ -189,38 +171,6 @@ function Chat() {
             ]
           );
         }
-
-        // MOVE ACTIVE CHAT TO TOP
-        setUsers((prev) => {
-
-          const targetUserId =
-            data.senderId ===
-            senderId
-              ? data.receiverId
-              : data.senderId;
-
-          const targetUser =
-            prev.find(
-              (u) =>
-                u._id ===
-                targetUserId
-            );
-
-          if (!targetUser)
-            return prev;
-
-          const others =
-            prev.filter(
-              (u) =>
-                u._id !==
-                targetUserId
-            );
-
-          return [
-            targetUser,
-            ...others,
-          ];
-        });
       }
     );
 
@@ -250,7 +200,7 @@ function Chat() {
 
         const res =
           await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/messages/${senderId}/${user._id}`
+            `https://agroconnect-1-hyi3.onrender.com/api/messages/${senderId}/${user._id}`
           );
 
         setMessages(
@@ -259,7 +209,10 @@ function Chat() {
 
       } catch (err) {
 
-        console.log(err);
+        console.log(
+          "MESSAGE ERROR:",
+          err
+        );
       }
     };
 
@@ -290,32 +243,24 @@ function Chat() {
 
         // SAVE TO DATABASE
         await axios.post(
-          "https://agroconnect-1-hyi3.onrender.com/messages",
+          "https://agroconnect-1-hyi3.onrender.com/api/messages",
 
           data
         );
 
-        // SOCKET SEND
+        // SOCKET
         socket.emit(
           "sendMessage",
           data
         );
 
-        // MOVE USER TO TOP
-        setUsers((prev) => {
-
-          const updated =
-            prev.filter(
-              (u) =>
-                u._id !==
-                selectedUser._id
-            );
-
-          return [
-            selectedUser,
-            ...updated,
-          ];
-        });
+        // LOCAL UPDATE
+        setMessages(
+          (prev) => [
+            ...prev,
+            data,
+          ]
+        );
 
         setMessage("");
 
@@ -358,9 +303,6 @@ function Chat() {
             "flex",
 
           gap: "24px",
-
-          boxSizing:
-            "border-box",
         }}
       >
 
@@ -379,171 +321,69 @@ function Chat() {
             padding:
               "24px",
 
-            display:
-              "flex",
-
-            flexDirection:
-              "column",
-
-            boxShadow:
-              "0 10px 25px rgba(0,0,0,0.06)",
+            overflowY:
+              "auto",
           }}
         >
 
-          <div
-            style={{
-              marginBottom:
-                "24px",
-            }}
-          >
+          <h1>
+            💬 Chats
+          </h1>
 
-            <h1
-              style={{
-                fontSize:
-                  "36px",
+          <h3>
+            Total Users:
+            {" "}
+            {users.length}
+          </h3>
 
-                marginBottom:
-                  "8px",
-              }}
-            >
-              💬 Chats
-            </h1>
+          {users.map(
+            (u) => (
 
-            <p
-              style={{
-                color:
-                  "#666",
+              <div
+                key={u._id}
 
-                fontSize:
-                  "15px",
-              }}
-            >
-              Connect with users
-            </p>
+                onClick={() =>
+                  openChat(
+                    u
+                  )
+                }
 
-          </div>
+                style={{
+                  padding:
+                    "16px",
 
-          <div
-            style={{
-              overflowY:
-                "auto",
+                  marginBottom:
+                    "12px",
 
-              flex: 1,
-            }}
-          >
+                  borderRadius:
+                    "14px",
 
-            {users.map(
-              (u) => (
+                  cursor:
+                    "pointer",
 
-                <div
-                  key={u._id}
+                  background:
+                    selectedUser?._id ===
+                    u._id
+                      ? "#dcfce7"
+                      : "#f1f5f9",
+                }}
+              >
 
-                  onClick={() =>
-                    openChat(
-                      u
-                    )
-                  }
+                <h3>
+                  {u.name}
+                </h3>
 
-                  style={{
-                    display:
-                      "flex",
+                <p>
+                  {u.role}
+                </p>
 
-                    alignItems:
-                      "center",
-
-                    gap: "15px",
-
-                    padding:
-                      "16px",
-
-                    borderRadius:
-                      "18px",
-
-                    cursor:
-                      "pointer",
-
-                    marginBottom:
-                      "14px",
-
-                    background:
-                      selectedUser?._id ===
-                      u._id
-                        ? "#dcfce7"
-                        : "#f8fafc",
-
-                    border:
-                      selectedUser?._id ===
-                      u._id
-                        ? "2px solid #16a34a"
-                        : "2px solid transparent",
-                  }}
-                >
-
-                  <img
-                    src={
-                      u.image ||
-                      "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                    }
-
-                    alt="user"
-
-                    style={{
-                      width:
-                        "62px",
-
-                      height:
-                        "62px",
-
-                      borderRadius:
-                        "50%",
-
-                      objectFit:
-                        "cover",
-
-                      border:
-                        "2px solid #16a34a",
-                    }}
-                  />
-
-                  <div>
-
-                    <h3
-                      style={{
-                        margin:
-                          0,
-
-                        marginBottom:
-                          "6px",
-                      }}
-                    >
-                      {u.name}
-                    </h3>
-
-                    <p
-                      style={{
-                        margin: 0,
-
-                        color:
-                          "#666",
-
-                        textTransform:
-                          "capitalize",
-                      }}
-                    >
-                      {u.role}
-                    </p>
-
-                  </div>
-
-                </div>
-              )
-            )}
-
-          </div>
+              </div>
+            )
+          )}
 
         </div>
 
-        {/* CHAT AREA */}
+        {/* CHAT */}
         <div
           style={{
             flex: 1,
@@ -559,12 +399,6 @@ function Chat() {
 
             flexDirection:
               "column",
-
-            overflow:
-              "hidden",
-
-            boxShadow:
-              "0 10px 25px rgba(0,0,0,0.06)",
           }}
         >
 
@@ -574,67 +408,18 @@ function Chat() {
               <div
                 style={{
                   padding:
-                    "22px 30px",
+                    "20px",
 
-                  display:
-                    "flex",
-
-                  alignItems:
-                    "center",
-
-                  gap: "16px",
-
-                  background:
-                    "#16a34a",
-
-                  color:
-                    "white",
+                  borderBottom:
+                    "1px solid #eee",
                 }}
               >
 
-                <img
-                  src={
-                    selectedUser.image ||
-                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                <h2>
+                  {
+                    selectedUser.name
                   }
-
-                  alt="user"
-
-                  style={{
-                    width:
-                      "72px",
-
-                    height:
-                      "72px",
-
-                    borderRadius:
-                      "50%",
-
-                    objectFit:
-                      "cover",
-                  }}
-                />
-
-                <div>
-
-                  <h2>
-                    {
-                      selectedUser.name
-                    }
-                  </h2>
-
-                  <p
-                    style={{
-                      textTransform:
-                        "capitalize",
-                    }}
-                  >
-                    {
-                      selectedUser.role
-                    }
-                  </p>
-
-                </div>
+                </h2>
 
               </div>
 
@@ -647,10 +432,7 @@ function Chat() {
                     "auto",
 
                   padding:
-                    "28px",
-
-                  background:
-                    "#f8fafc",
+                    "20px",
                 }}
               >
 
@@ -664,48 +446,45 @@ function Chat() {
                       key={index}
 
                       style={{
-                        display:
-                          "flex",
-
-                        justifyContent:
+                        textAlign:
                           m.senderId ===
                           senderId
-                            ? "flex-end"
-                            : "flex-start",
+                            ? "right"
+                            : "left",
 
                         marginBottom:
-                          "18px",
+                          "15px",
                       }}
                     >
 
-                      <div
+                      <span
                         style={{
                           background:
                             m.senderId ===
                             senderId
                               ? "#16a34a"
-                              : "white",
+                              : "#e2e8f0",
 
                           color:
                             m.senderId ===
                             senderId
                               ? "white"
-                              : "#111",
+                              : "black",
 
                           padding:
-                            "15px 18px",
+                            "12px 16px",
 
                           borderRadius:
-                            "18px",
+                            "16px",
 
-                          maxWidth:
-                            "380px",
+                          display:
+                            "inline-block",
                         }}
                       >
                         {
                           m.message
                         }
-                      </div>
+                      </span>
 
                     </div>
                   )
@@ -729,15 +508,10 @@ function Chat() {
                     "flex",
 
                   gap: "15px",
-
-                  background:
-                    "white",
                 }}
               >
 
                 <input
-                  placeholder="Type message..."
-
                   value={
                     message
                   }
@@ -751,27 +525,16 @@ function Chat() {
                     )
                   }
 
-                  onKeyDown={(
-                    e
-                  ) => {
-
-                    if (
-                      e.key ===
-                      "Enter"
-                    ) {
-
-                      sendMessage();
-                    }
-                  }}
+                  placeholder="Type message..."
 
                   style={{
                     flex: 1,
 
                     padding:
-                      "16px",
+                      "14px",
 
                     borderRadius:
-                      "16px",
+                      "14px",
 
                     border:
                       "1px solid #ddd",
@@ -793,17 +556,14 @@ function Chat() {
                     border:
                       "none",
 
-                    borderRadius:
-                      "16px",
-
                     padding:
-                      "0 30px",
+                      "0 25px",
+
+                    borderRadius:
+                      "14px",
 
                     cursor:
                       "pointer",
-
-                    fontWeight:
-                      "700",
                   }}
                 >
                   Send
@@ -825,19 +585,12 @@ function Chat() {
 
                 alignItems:
                   "center",
-
-                flexDirection:
-                  "column",
               }}
             >
 
-              <h1>
-                💬 Open a chat
-              </h1>
-
-              <p>
-                Select user to start messaging
-              </p>
+              <h2>
+                Select a user to chat
+              </h2>
 
             </div>
           )}
