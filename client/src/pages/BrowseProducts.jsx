@@ -2,7 +2,6 @@
 
 import {
   useEffect,
-  useMemo,
   useState,
 } from "react";
 
@@ -60,59 +59,76 @@ function BrowseProducts() {
   // =====================================
   // FETCH PRODUCTS
   // =====================================
-  const fetchProducts =
-    async () => {
+  const fetchProducts = async () => {
 
-      try {
+    try {
 
-       const res = await axios.get(
-  `https://agroconnect-1-hyi3.onrender.com/api/company-orders/${companyId}`
-);
-          console.log(res.data);
+      const res = await axios.get(
+        "https://agroconnect-1-hyi3.onrender.com/api/products"
+      );
+
+      console.log(
+        "PRODUCTS:",
+        res.data
+      );
+
+      if (
+        Array.isArray(res.data)
+      ) {
 
         setProducts(
           res.data
         );
 
-      } catch (err) {
+      } else {
 
-        console.log(err);
+        setProducts([]);
       }
-    };
+
+    } catch (err) {
+
+      console.log(
+        "PRODUCT FETCH ERROR:",
+        err
+      );
+    }
+  };
 
   // =====================================
   // FETCH ORDERS
   // =====================================
-  const fetchOrders =
-    async () => {
+  const fetchOrders = async () => {
 
-      try {
+    try {
 
-        const companyId =
-          localStorage.getItem(
-            "userId"
-          );
-
-        const res =
-          await axios.get(
-            `https://agroconnect-1-hyi3.onrender.com/company-orders/${companyId}`
-          );
-
-        const orderedIds =
-          res.data.map(
-            (o) =>
-              o.productId
-          );
-
-        setOrderedProducts(
-          orderedIds
+      const companyId =
+        localStorage.getItem(
+          "userId"
         );
 
-      } catch (err) {
+      const res =
+        await axios.get(
+          `https://agroconnect-1-hyi3.onrender.com/api/company-orders/${companyId}`
+        );
 
-        console.log(err);
-      }
-    };
+      const orderedIds =
+        res.data.map(
+          (o) =>
+            o.productId
+        );
+
+      setOrderedProducts(
+        orderedIds
+      );
+
+    } catch (err) {
+
+      console.log(
+        "ORDER ERROR:",
+        err
+      );
+    }
+  };
 
   // =====================================
   // HANDLE QUANTITY
@@ -187,7 +203,7 @@ function BrowseProducts() {
         }
 
         await axios.post(
-          "https://agroconnect-1-hyi3.onrender.com/place-order",
+          "https://agroconnect-1-hyi3.onrender.com/api/place-order",
 
           {
             productId:
@@ -222,7 +238,10 @@ function BrowseProducts() {
 
       } catch (err) {
 
-        console.log(err);
+        console.log(
+          "PLACE ORDER ERROR:",
+          err
+        );
 
         alert(
           "Error placing order"
@@ -234,40 +253,35 @@ function BrowseProducts() {
   // FILTER PRODUCTS
   // =====================================
   const filteredProducts =
-    useMemo(() => {
+    products.filter(
+      (p) => {
 
-      return products.filter(
-        (p) => {
+        const title =
+          p.title || "";
 
-          const matchesSearch =
-            p.title
-              .toLowerCase()
-              .includes(
-                search.toLowerCase()
-              );
+        const matchesSearch =
+          title
+            .toLowerCase()
+            .includes(
+              search.toLowerCase()
+            );
 
-          const matchesPrice =
-            maxPrice
-              ? Number(
-                  p.price
-                ) <=
-                Number(
-                  maxPrice
-                )
-              : true;
+        const matchesPrice =
+          maxPrice
+            ? Number(
+                p.price
+              ) <=
+              Number(
+                maxPrice
+              )
+            : true;
 
-          return (
-            matchesSearch &&
-            matchesPrice
-          );
-        }
-      );
-
-    }, [
-      products,
-      search,
-      maxPrice,
-    ]);
+        return (
+          matchesSearch &&
+          matchesPrice
+        );
+      }
+    );
 
   return (
     <div
@@ -276,14 +290,10 @@ function BrowseProducts() {
       }}
     >
 
-      {/* =====================================
-          SIDEBAR
-      ===================================== */}
+      {/* SIDEBAR */}
       <Sidebar />
 
-      {/* =====================================
-          MAIN CONTENT
-      ===================================== */}
+      {/* MAIN */}
       <div
         style={{
           marginLeft:
@@ -303,9 +313,7 @@ function BrowseProducts() {
         }}
       >
 
-        {/* =====================================
-            HEADER
-        ===================================== */}
+        {/* HEADER */}
         <div
           style={{
             marginBottom:
@@ -337,11 +345,17 @@ function BrowseProducts() {
             Explore and order products directly from farmers
           </p>
 
+          <h2>
+            Total Products:
+            {" "}
+            {
+              filteredProducts.length
+            }
+          </h2>
+
         </div>
 
-        {/* =====================================
-            FILTERS
-        ===================================== */}
+        {/* FILTERS */}
         <div
           style={{
             display:
@@ -431,9 +445,7 @@ function BrowseProducts() {
 
         </div>
 
-        {/* =====================================
-            PRODUCTS
-        ===================================== */}
+        {/* PRODUCTS */}
         <div
           style={{
             display:
@@ -485,16 +497,14 @@ function BrowseProducts() {
 
                     boxShadow:
                       "0 10px 24px rgba(0,0,0,0.06)",
-
-                    transition:
-                      "0.3s",
                   }}
                 >
 
                   {/* IMAGE */}
                   <img
                     src={
-                      p.images?.length > 0
+                      p.images &&
+                      p.images.length > 0
                         ? `https://agroconnect-1-hyi3.onrender.com/uploads/${p.images[0]}`
                         : "https://via.placeholder.com/400x250"
                     }
@@ -521,40 +531,25 @@ function BrowseProducts() {
                     }}
                   >
 
-                    <h2
-                      style={{
-                        marginBottom:
-                          "14px",
-
-                        fontSize:
-                          "28px",
-                      }}
-                    >
+                    <h2>
                       {p.title}
                     </h2>
 
-                    <p
-                      style={{
-                        marginBottom:
-                          "8px",
-                      }}
-                    >
+                    <p>
                       <strong>
                         Price:
-                      </strong>{" "}
+                      </strong>
+                      {" "}
                       ₹{p.price}
                     </p>
 
-                    <p
-                      style={{
-                        marginBottom:
-                          "14px",
-                      }}
-                    >
+                    <p>
                       <strong>
                         Available:
-                      </strong>{" "}
-                      {p.quantity}{" "}
+                      </strong>
+                      {" "}
+                      {p.quantity}
+                      {" "}
                       {p.quantityUnit || "kg"}
                     </p>
 
@@ -574,8 +569,7 @@ function BrowseProducts() {
                         handleQtyChange(
                           p._id,
 
-                          e.target
-                            .value,
+                          e.target.value,
 
                           p.quantity
                         )
@@ -602,9 +596,6 @@ function BrowseProducts() {
 
                         marginBottom:
                           "18px",
-
-                        fontSize:
-                          "15px",
                       }}
                     />
 
@@ -632,12 +623,6 @@ function BrowseProducts() {
 
                           borderRadius:
                             "16px",
-
-                          fontWeight:
-                            "700",
-
-                          fontSize:
-                            "15px",
 
                           opacity:
                             0.7,
@@ -678,12 +663,6 @@ function BrowseProducts() {
 
                           borderRadius:
                             "16px",
-
-                          fontWeight:
-                            "700",
-
-                          fontSize:
-                            "15px",
 
                           cursor:
                             "pointer",
