@@ -1,3 +1,5 @@
+// client/src/pages/Chat.jsx
+
 import {
   useEffect,
   useRef,
@@ -82,11 +84,6 @@ function Chat() {
           await axios.get(
             "https://agroconnect-1-hyi3.onrender.com/api/all-users"
           );
-
-        console.log(
-          "USERS:",
-          res.data
-        );
 
         let filtered =
           res.data.filter(
@@ -349,6 +346,14 @@ function Chat() {
                 }
 
                 style={{
+                  display:
+                    "flex",
+
+                  alignItems:
+                    "center",
+
+                  gap: "15px",
+
                   padding:
                     "16px",
 
@@ -369,13 +374,42 @@ function Chat() {
                 }}
               >
 
-                <h3>
-                  {u.name}
-                </h3>
+                {/* PROFILE IMAGE */}
+                <img
+                  src={
+                    u.image
+                      ? `https://agroconnect-1-hyi3.onrender.com/uploads/${u.image}`
+                      : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  }
 
-                <p>
-                  {u.role}
-                </p>
+                  alt="profile"
+
+                  style={{
+                    width:
+                      "55px",
+
+                    height:
+                      "55px",
+
+                    borderRadius:
+                      "50%",
+
+                    objectFit:
+                      "cover",
+                  }}
+                />
+
+                <div>
+
+                  <h3>
+                    {u.name}
+                  </h3>
+
+                  <p>
+                    {u.role}
+                  </p>
+
+                </div>
 
               </div>
             )
@@ -412,14 +446,57 @@ function Chat() {
 
                   borderBottom:
                     "1px solid #eee",
+
+                  display:
+                    "flex",
+
+                  alignItems:
+                    "center",
+
+                  gap: "15px",
                 }}
               >
 
-                <h2>
-                  {
-                    selectedUser.name
+                {/* SELECTED USER IMAGE */}
+                <img
+                  src={
+                    selectedUser.image
+                      ? `https://agroconnect-1-hyi3.onrender.com/uploads/${selectedUser.image}`
+                      : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
-                </h2>
+
+                  alt="profile"
+
+                  style={{
+                    width:
+                      "65px",
+
+                    height:
+                      "65px",
+
+                    borderRadius:
+                      "50%",
+
+                    objectFit:
+                      "cover",
+                  }}
+                />
+
+                <div>
+
+                  <h2>
+                    {
+                      selectedUser.name
+                    }
+                  </h2>
+
+                  <p>
+                    {
+                      selectedUser.role
+                    }
+                  </p>
+
+                </div>
 
               </div>
 
