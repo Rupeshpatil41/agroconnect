@@ -4,8 +4,55 @@ const express =
 const router =
   express.Router();
 
+const multer =
+  require("multer");
+
+const path =
+  require("path");
+
 const User =
   require("../models/User");
+
+// =====================================
+// MULTER STORAGE
+// =====================================
+const storage =
+  multer.diskStorage({
+
+    destination:
+      function (
+        req,
+        file,
+        cb
+      ) {
+
+        cb(
+          null,
+          "uploads/"
+        );
+      },
+
+    filename:
+      function (
+        req,
+        file,
+        cb
+      ) {
+
+        cb(
+          null,
+
+          Date.now() +
+            "-" +
+            file.originalname
+        );
+      },
+  });
+
+const upload =
+  multer({
+    storage,
+  });
 
 // =====================================
 // GET USER PROFILE
@@ -42,15 +89,40 @@ router.get(
 router.put(
   "/profile/:id",
 
+  upload.single(
+    "profilePic"
+  ),
+
   async (req, res) => {
 
     try {
 
+      const updateData = {
+        name:
+          req.body.name,
+
+        email:
+          req.body.email,
+
+        role:
+          req.body.role,
+      };
+
+      // SAVE IMAGE
+      if (
+        req.file
+      ) {
+
+        updateData.profilePic =
+          `uploads/${req.file.filename}`;
+      }
+
       const updatedUser =
         await User.findByIdAndUpdate(
+
           req.params.id,
 
-          req.body,
+          updateData,
 
           {
             new: true,
