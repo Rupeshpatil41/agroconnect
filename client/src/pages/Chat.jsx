@@ -377,9 +377,8 @@ function Chat() {
                 {/* USER IMAGE */}
                 <img
                   src={
-                    u.profilePic
-                      ? `https://agroconnect-1-hyi3.onrender.com/${u.profilePic}`
-                      : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    u.profilePic ||
+                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
                   alt="profile"
@@ -465,9 +464,8 @@ function Chat() {
                 {/* SELECTED USER IMAGE */}
                 <img
                   src={
-                    selectedUser.profilePic
-                      ? `https://agroconnect-1-hyi3.onrender.com/${selectedUser.profilePic}`
-                      : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    selectedUser.profilePic ||
+                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
                   alt="profile"
