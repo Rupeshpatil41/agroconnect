@@ -39,7 +39,7 @@ function FarmerOrders() {
 
         const res =
           await axios.get(
-            `https://agroconnect-app-ksc5.onrender.com/api/farmer-orders/${farmerId}`
+            `https://agroconnect-1-hyi3.onrender.com/api/farmer-orders/${farmerId}`
           );
 
         setOrders(
@@ -64,7 +64,7 @@ function FarmerOrders() {
       try {
 
         await axios.put(
-          `https://agroconnect-app-ksc5.onrender.com/api/update-order/${id}`,
+          `https://agroconnect-1-hyi3.onrender.com/api/update-order/${id}`,
 
           { status }
         );
@@ -88,14 +88,8 @@ function FarmerOrders() {
       }}
     >
 
-      {/* =====================================
-          SIDEBAR
-      ===================================== */}
       <Sidebar />
 
-      {/* =====================================
-          MAIN CONTENT
-      ===================================== */}
       <div
         style={{
           marginLeft:
@@ -115,9 +109,6 @@ function FarmerOrders() {
         }}
       >
 
-        {/* =====================================
-            HEADER
-        ===================================== */}
         <div
           style={{
             marginBottom:
@@ -151,9 +142,6 @@ function FarmerOrders() {
 
         </div>
 
-        {/* =====================================
-            EMPTY STATE
-        ===================================== */}
         {orders.length ===
         0 ? (
 
@@ -248,13 +236,9 @@ function FarmerOrders() {
 
                       boxShadow:
                         "0 10px 24px rgba(0,0,0,0.06)",
-
-                      transition:
-                        "0.3s",
                     }}
                   >
 
-                    {/* PRODUCT */}
                     <div
                       style={{
                         marginBottom:
@@ -278,7 +262,6 @@ function FarmerOrders() {
 
                     </div>
 
-                    {/* DETAILS */}
                     <div
                       style={{
                         display:
@@ -338,9 +321,6 @@ function FarmerOrders() {
 
                     </div>
 
-                    {/* =====================================
-                        PENDING BUTTONS
-                    ===================================== */}
                     {status ===
                     "pending" ? (
 
@@ -353,7 +333,6 @@ function FarmerOrders() {
                         }}
                       >
 
-                        {/* ACCEPT */}
                         <button
                           onClick={() =>
                             updateStatus(
@@ -383,9 +362,6 @@ function FarmerOrders() {
                             fontWeight:
                               "700",
 
-                            fontSize:
-                              "15px",
-
                             cursor:
                               "pointer",
                           }}
@@ -393,7 +369,6 @@ function FarmerOrders() {
                           Accept
                         </button>
 
-                        {/* REJECT */}
                         <button
                           onClick={() =>
                             updateStatus(
@@ -423,9 +398,6 @@ function FarmerOrders() {
                             fontWeight:
                               "700",
 
-                            fontSize:
-                              "15px",
-
                             cursor:
                               "pointer",
                           }}
@@ -437,7 +409,6 @@ function FarmerOrders() {
 
                     ) : (
 
-                      /* STATUS BOX */
                       <div
                         style={{
                           padding:
@@ -466,9 +437,6 @@ function FarmerOrders() {
 
                           textTransform:
                             "capitalize",
-
-                          fontSize:
-                            "15px",
                         }}
                       >
                         Order {status}

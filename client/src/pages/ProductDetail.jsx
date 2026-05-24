@@ -87,7 +87,10 @@ function ProductDetail() {
 
       } catch (err) {
 
-        console.log(err);
+        console.log(
+          "FETCH ERROR:",
+          err
+        );
       }
     };
 
@@ -103,6 +106,15 @@ function ProductDetail() {
           localStorage.getItem(
             "userId"
           );
+
+        if (
+          !companyId
+        ) {
+
+          return alert(
+            "Please login first"
+          );
+        }
 
         if (
           qty <= 0
@@ -123,6 +135,21 @@ function ProductDetail() {
           );
         }
 
+        // IMPORTANT FIX
+        if (
+          !product.farmerId
+        ) {
+
+          console.log(
+            "PRODUCT:",
+            product
+          );
+
+          return alert(
+            "Farmer ID missing in product"
+          );
+        }
+
         await axios.post(
           "https://agroconnect-1-hyi3.onrender.com/api/place-order",
 
@@ -139,9 +166,9 @@ function ProductDetail() {
             quantity:
               `${qty} ${product.quantityUnit || "kg"}`,
 
-            // ✅ FIXED
+            // FINAL FIX
             farmerId:
-              product.userId,
+              product.farmerId,
 
             companyId,
           }
@@ -153,10 +180,15 @@ function ProductDetail() {
 
       } catch (err) {
 
-        console.log(err);
+        console.log(
+          "ORDER ERROR:",
+          err
+        );
 
         alert(
-          "Error placing order"
+          err.response?.data
+            ?.message ||
+            "Error placing order"
         );
       }
     };
@@ -184,7 +216,7 @@ function ProductDetail() {
       }}
     >
 
-      {/* BACK */}
+      {/* BACK BUTTON */}
       <button
         className="secondary"
 
@@ -225,7 +257,9 @@ function ProductDetail() {
         }}
       >
 
-        {/* IMAGE GALLERY */}
+        {/* =====================================
+            IMAGE GALLERY
+        ===================================== */}
         <div
           style={{
             flex: 1,
@@ -323,7 +357,9 @@ function ProductDetail() {
 
         </div>
 
-        {/* DETAILS */}
+        {/* =====================================
+            PRODUCT DETAILS
+        ===================================== */}
         <div
           style={{
             flex: 1,
@@ -445,6 +481,7 @@ function ProductDetail() {
               Order Now
             </button>
 
+            {/* REVIEW BUTTON */}
             <button
               className="secondary"
 
@@ -463,7 +500,9 @@ function ProductDetail() {
 
       </div>
 
-      {/* SIMILAR PRODUCTS */}
+      {/* =====================================
+          SIMILAR PRODUCTS
+      ===================================== */}
       <h2
         style={{
           marginTop:
