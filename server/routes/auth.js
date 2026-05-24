@@ -142,5 +142,35 @@ router.post(
   }
 );
 
+// =====================================
+// GET ALL USERS
+// =====================================
+router.get(
+  "/all-users",
+
+  async (req, res) => {
+
+    try {
+
+      const users =
+        await User.find(
+          {},
+          "-password"
+        );
+
+      res.json(users);
+
+    } catch (err) {
+
+      console.log(err);
+
+      res.status(500).json({
+        message:
+          "Failed to fetch users",
+      });
+    }
+  }
+);
+
 module.exports =
   router;
