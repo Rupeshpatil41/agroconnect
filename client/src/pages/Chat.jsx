@@ -117,8 +117,23 @@ function Chat() {
             );
         }
 
+        // FIX IMAGE ISSUE
+        const updatedUsers =
+          filtered.map((u) => ({
+            ...u,
+
+            image:
+              u.image?.trim() ||
+              "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+          }));
+
+        console.log(
+          "CHAT USERS:",
+          updatedUsers
+        );
+
         setUsers(
-          filtered
+          updatedUsers
         );
 
       } catch (err) {
@@ -377,8 +392,7 @@ function Chat() {
                 {/* USER IMAGE */}
                 <img
                   src={
-                    u.profilePic ||
-                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    u.image
                   }
 
                   alt="profile"
@@ -464,7 +478,7 @@ function Chat() {
                 {/* SELECTED USER IMAGE */}
                 <img
                   src={
-                    selectedUser.profilePic ||
+                    selectedUser.image ||
                     "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                   }
 
