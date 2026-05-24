@@ -139,8 +139,9 @@ function ProductDetail() {
             quantity:
               `${qty} ${product.quantityUnit || "kg"}`,
 
+            // ✅ FIXED
             farmerId:
-              product.farmerId,
+              product.userId,
 
             companyId,
           }
@@ -224,9 +225,7 @@ function ProductDetail() {
         }}
       >
 
-        {/* =====================================
-            IMAGE GALLERY
-        ===================================== */}
+        {/* IMAGE GALLERY */}
         <div
           style={{
             flex: 1,
@@ -324,9 +323,7 @@ function ProductDetail() {
 
         </div>
 
-        {/* =====================================
-            DETAILS
-        ===================================== */}
+        {/* DETAILS */}
         <div
           style={{
             flex: 1,
@@ -448,7 +445,6 @@ function ProductDetail() {
               Order Now
             </button>
 
-            {/* REVIEW BUTTON */}
             <button
               className="secondary"
 
@@ -467,9 +463,7 @@ function ProductDetail() {
 
       </div>
 
-      {/* =====================================
-          SIMILAR PRODUCTS
-      ===================================== */}
+      {/* SIMILAR PRODUCTS */}
       <h2
         style={{
           marginTop:
